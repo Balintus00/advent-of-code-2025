@@ -1,21 +1,35 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    part1()
+}
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    // Read the input from the `src/Day01.txt` file.
+private fun part1() {
     val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+
+    var zeroPositionCounter = 0
+
+    var currentPosition = 50
+
+    input.forEach { step ->
+        val stepSize = step.removeRange(0, 1).toInt()
+
+        currentPosition = when (step.first()) {
+            'L' -> currentPosition - stepSize
+            'R' -> currentPosition + stepSize
+            else -> throw IllegalArgumentException("Unexpected turn direction input: ${step.first()}")
+        }
+
+        while (currentPosition < 0) {
+            currentPosition += 100
+        }
+
+        if (currentPosition > 99) {
+            currentPosition %= 100
+        }
+
+        if (currentPosition == 0) {
+            zeroPositionCounter += 1
+        }
+    }
+
+    println("Part 1 result is $zeroPositionCounter")
 }
