@@ -10,7 +10,7 @@ private fun part1(input: List<String>) {
 
     executeSteps(
         input = input,
-        onStepEndedOnZero = { zeroEndPositionCounter += 1 }
+        onStepEndedOnZero = { zeroEndPositionCounter += 1 },
     )
 
     println("Part 1 result is $zeroEndPositionCounter")
@@ -69,7 +69,7 @@ private fun part2(input: List<String>) {
 
     executeSteps(
         input = input,
-        onStepCrossedZero = { zeroClickCounter += 1 }
+        onStepCrossedZero = { zeroClickCounter += 1 },
     )
 
     println("Part 2 result is $zeroClickCounter")
